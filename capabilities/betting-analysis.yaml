@@ -1,0 +1,197 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Sportsbook API Betting Analysis"
+  description: >-
+    Unified sports betting analysis capability composing Sportsbook API data for
+    odds comparison, arbitrage detection, positive EV identification, and middling
+    strategy research across NFL, NBA, MLB, NHL, NCAA, and soccer.
+  tags:
+    - Sports Betting
+    - Arbitrage
+    - Expected Value
+    - Odds Comparison
+    - NFL
+    - NBA
+    - MLB
+    - NHL
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RAPIDAPI_KEY: RAPIDAPI_KEY
+
+capability:
+  consumes:
+    - import: sportsbook-api
+      location: ./shared/sportsbook-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: betting-analysis-api
+      description: "Unified REST API for sports betting odds, arbitrage, and +EV analysis."
+      resources:
+        - path: /v1/odds
+          name: odds
+          description: "Real-time odds from 10+ sportsbooks"
+          operations:
+            - method: GET
+              name: get-odds
+              description: "Get real-time betting odds for a sport and league"
+              call: "sportsbook-api.get-odds"
+              with:
+                sport: "rest.sport"
+                league: "rest.league"
+                market: "rest.market"
+                bookmaker: "rest.bookmaker"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/arbitrage
+          name: arbitrage
+          description: "Arbitrage opportunities across sportsbooks"
+          operations:
+            - method: GET
+              name: get-arbitrage
+              description: "Find guaranteed profit arbitrage opportunities"
+              call: "sportsbook-api.get-arbitrage"
+              with:
+                sport: "rest.sport"
+                league: "rest.league"
+                minProfit: "rest.minProfit"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/positive-ev
+          name: positive-ev
+          description: "Positive expected value bets"
+          operations:
+            - method: GET
+              name: get-positive-ev
+              description: "Find bets with positive expected value"
+              call: "sportsbook-api.get-positive-ev"
+              with:
+                sport: "rest.sport"
+                league: "rest.league"
+                minEv: "rest.minEv"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/middles
+          name: middles
+          description: "Middling opportunities"
+          operations:
+            - method: GET
+              name: get-middles
+              description: "Find middling betting opportunities"
+              call: "sportsbook-api.get-middles"
+              with:
+                sport: "rest.sport"
+                league: "rest.league"
+                minWindow: "rest.minWindow"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/sports
+          name: sports
+          description: "Supported sports and leagues"
+          operations:
+            - method: GET
+              name: list-sports
+              description: "List supported sports"
+              call: "sportsbook-api.list-sports"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/bookmakers
+          name: bookmakers
+          description: "Aggregated sportsbooks"
+          operations:
+            - method: GET
+              name: list-bookmakers
+              description: "List all sportsbooks"
+              call: "sportsbook-api.list-bookmakers"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9081
+      namespace: betting-analysis-mcp
+      transport: http
+      description: "MCP server for AI-assisted sports betting analysis and strategy research."
+      tools:
+        - name: get-odds
+          description: "Get real-time betting odds from FanDuel, DraftKings, BetMGM, and 7+ more sportsbooks. Filter by sport (football/basketball/baseball/hockey/soccer) and league (NFL/NBA/MLB/NHL/EPL)."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.get-odds"
+          with:
+            sport: "tools.sport"
+            league: "tools.league"
+            market: "tools.market"
+            bookmaker: "tools.bookmaker"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-arbitrage
+          description: "Find guaranteed profit arbitrage opportunities across sportsbooks. Returns events where betting both sides locks in a risk-free profit."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.get-arbitrage"
+          with:
+            sport: "tools.sport"
+            league: "tools.league"
+            minProfit: "tools.minProfit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-positive-ev
+          description: "Find positive expected value bets by comparing sportsbook odds to no-vig fair odds consensus. Returns bets with above-average long-term profitability."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.get-positive-ev"
+          with:
+            sport: "tools.sport"
+            league: "tools.league"
+            minEv: "tools.minEv"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-middles
+          description: "Find middling opportunities where betting both sides of a game at different lines creates a scenario where both bets can win."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.get-middles"
+          with:
+            sport: "tools.sport"
+            league: "tools.league"
+            minWindow: "tools.minWindow"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-sports
+          description: "List all sports covered: football (NFL, NCAAF, UFL, CFL), basketball (NBA, WNBA), baseball (MLB), hockey (NHL), and soccer (EPL, MLS, La Liga)."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.list-sports"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-bookmakers
+          description: "List all sportsbooks aggregated: FanDuel, DraftKings, BetMGM, Kalshi, theScore, Fanatics, BetRivers, Polymarket, Bovada, BetOnline."
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.list-bookmakers"
+          outputParameters:
+            - type: object
+              mapping: "$."

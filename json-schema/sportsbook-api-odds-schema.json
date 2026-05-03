@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sportsbookapi.com/schemas/odds",
+  "title": "Sportsbook API Odds Response",
+  "description": "Sports betting odds data from multiple sportsbooks for a given sport and league",
+  "type": "object",
+  "required": ["sport", "league", "events"],
+  "properties": {
+    "sport": {
+      "type": "string",
+      "description": "Sport category",
+      "enum": ["football", "basketball", "baseball", "hockey", "soccer"]
+    },
+    "league": {
+      "type": "string",
+      "description": "League abbreviation",
+      "examples": ["NFL", "NBA", "MLB", "NHL", "NCAAF", "NCAAB", "EPL", "MLS"]
+    },
+    "events": {
+      "type": "array",
+      "description": "List of events with odds",
+      "items": {
+        "$ref": "#/$defs/EventOdds"
+      }
+    }
+  },
+  "$defs": {
+    "EventOdds": {
+      "type": "object",
+      "required": ["eventId", "homeTeam", "awayTeam", "startTime"],
+      "properties": {
+        "eventId": {
+          "type": "string",
+          "description": "Unique event identifier"
+        },
+        "homeTeam": {
+          "type": "string",
+          "description": "Home team name"
+        },
+        "awayTeam": {
+          "type": "string",
+          "description": "Away team name"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Game start time in UTC"
+        },
+        "status": {
+          "type": "string",
+          "enum": ["scheduled", "live", "final"],
+          "description": "Current game status"
+        },
+        "markets": {
+          "type": "array",
+          "description": "Available betting markets with odds",
+          "items": {
+            "$ref": "#/$defs/MarketOdds"
+          }
+        }
+      }
+    },
+    "MarketOdds": {
+      "type": "object",
+      "required": ["market", "bookmakers"],
+      "properties": {
+        "market": {
+          "type": "string",
+          "description": "Market type",
+          "enum": ["spread", "moneyline", "total", "prop", "future"]
+        },
+        "period": {
+          "type": "string",
+          "description": "Game period",
+          "enum": ["fullgame", "firsthalf", "firstquarter", "secondhalf", "secondquarter"]
+        },
+        "bookmakers": {
+          "type": "array",
+          "description": "Odds from each sportsbook",
+          "items": {
+            "$ref": "#/$defs/BookmakerOdds"
+          }
+        }
+      }
+    },
+    "BookmakerOdds": {
+      "type": "object",
+      "required": ["bookmaker"],
+      "properties": {
+        "bookmaker": {
+          "type": "string",
+          "description": "Sportsbook name",
+          "examples": ["FanDuel", "DraftKings", "BetMGM", "Kalshi", "BetRivers", "Bovada"]
+        },
+        "homeOdds": {
+          "type": "number",
+          "description": "Home team or over odds in American format",
+          "examples": [-110, 150, -300]
+        },
+        "awayOdds": {
+          "type": "number",
+          "description": "Away team or under odds in American format",
+          "examples": [-110, -170, 250]
+        },
+        "line": {
+          "type": "number",
+          "description": "Point spread or total line",
+          "examples": [-3.5, 47.5, 2.5]
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When odds were last updated (updates every minute)"
+        }
+      }
+    }
+  }
+}

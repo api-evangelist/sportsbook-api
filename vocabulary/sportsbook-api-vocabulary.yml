@@ -1,0 +1,147 @@
+name: Sportsbook API Vocabulary
+description: >-
+  Domain vocabulary for the Sportsbook API sports betting odds platform, covering
+  terminology for betting markets, odds formats, sportsbooks, and analytical strategies.
+version: '1.0'
+created: '2026-05-02'
+modified: '2026-05-02'
+terms:
+  - term: Moneyline
+    definition: >-
+      A bet on which team will win a game outright with no point spread. Odds are
+      expressed in American format (e.g., -150 for favorite, +130 for underdog).
+    related:
+      - Spread
+      - American Odds
+
+  - term: Point Spread
+    definition: >-
+      A bet where one team must win by more than a specified margin (spread) for
+      the bet to win, equalizing the perceived difference in team strength.
+    synonyms:
+      - Spread
+      - Line
+    related:
+      - Cover
+      - Against the Spread
+
+  - term: Total (Over/Under)
+    definition: >-
+      A bet on whether the combined score of both teams will be over or under a
+      sportsbook-set number. Also called the "over/under" or just "total".
+    related:
+      - Over
+      - Under
+
+  - term: American Odds
+    definition: >-
+      The standard odds format in the United States, expressed as a number with
+      a +/- prefix. Negative numbers (e.g., -110) indicate how much to bet to win $100.
+      Positive numbers (e.g., +130) indicate how much is won for a $100 bet.
+    related:
+      - Decimal Odds
+      - Fractional Odds
+
+  - term: Implied Probability
+    definition: >-
+      The probability of an outcome implied by the odds, calculated from American
+      odds. For -110, implied probability = 110/(110+100) = 52.4%.
+
+  - term: Juice (Vig)
+    definition: >-
+      The commission charged by a sportsbook on losing bets, built into the odds.
+      Standard juice is -110 on both sides (each side pays a ~4.8% commission).
+    synonyms:
+      - Vigorish
+      - Vig
+
+  - term: Arbitrage
+    definition: >-
+      A betting strategy where a bettor places bets on all outcomes of an event
+      across different sportsbooks to guarantee a profit regardless of the outcome.
+    synonyms:
+      - Arb
+      - Sure Bet
+
+  - term: Positive Expected Value (+EV)
+    definition: >-
+      A bet where the probability of winning multiplied by the potential profit
+      exceeds the probability of losing multiplied by the bet amount, indicating
+      a profitable bet over the long run.
+    synonyms:
+      - Plus EV
+      - Value Bet
+
+  - term: Middle
+    definition: >-
+      A betting strategy where a bettor bets on both sides of a game at different
+      lines, creating a scenario where both bets can win if the score falls within
+      a specific range called the "middle window".
+
+  - term: No-Vig Fair Odds
+    definition: >-
+      The odds of an event after removing the sportsbook's margin (vig), representing
+      the true implied probability as set by the market consensus.
+
+  - term: Sharp Money
+    definition: >-
+      Bets placed by professional or highly skilled bettors whose action is known
+      to move betting lines due to their accuracy and volume.
+
+  - term: Public Money
+    definition: >-
+      Bets placed by recreational bettors, often on popular or favorite teams.
+      Used to track sentiment vs. where sharps are betting.
+
+  - term: Line Movement
+    definition: >-
+      A change in the point spread, total, or moneyline odds from the opening line
+      to the current line, driven by betting volume and sharp money.
+
+  - term: Prop Bet
+    definition: >-
+      A bet on a specific outcome within a game that is not directly tied to the
+      final score, such as a player's performance stats or specific game events.
+    synonyms:
+      - Proposition Bet
+      - Player Prop
+
+  - term: Futures Bet
+    definition: >-
+      A bet placed on the outcome of an event in the future, such as a team winning
+      the championship or a player winning an award.
+
+  - term: Live Betting
+    definition: >-
+      Betting on a game that is already in progress, with odds that change dynamically
+      based on the game situation.
+    synonyms:
+      - In-Play Betting
+      - In-Game Betting
+
+  - term: Bookmaker
+    definition: >-
+      A licensed company that accepts and pays out wagers on sporting events,
+      also called a sportsbook.
+    synonyms:
+      - Sportsbook
+      - Bookie
+
+  - term: Opening Line
+    definition: >-
+      The initial odds set by a sportsbook when a game is first made available
+      for wagering, before any betting action moves the line.
+
+  - term: Closing Line
+    definition: >-
+      The final odds at a sportsbook when betting closes, just before an event starts.
+      Beating the closing line is considered a marker of long-term betting skill.
+
+tags:
+  - Sports Betting
+  - Odds
+  - Gambling
+  - NFL
+  - NBA
+  - MLB
+  - NHL

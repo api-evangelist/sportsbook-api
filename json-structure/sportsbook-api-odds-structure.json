@@ -1,0 +1,74 @@
+{
+  "name": "Sportsbook API Odds Structure",
+  "description": "JSON structure documentation for Sportsbook API odds, arbitrage, and betting analysis data",
+  "version": "1.0",
+  "structures": [
+    {
+      "name": "OddsResponse",
+      "description": "Root response containing event odds from multiple sportsbooks for a sport and league",
+      "fields": [
+        {"name": "sport", "type": "string enum", "required": true, "description": "Sport name: football | basketball | baseball | hockey | soccer"},
+        {"name": "league", "type": "string", "required": true, "description": "League abbreviation (NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, MLS)"},
+        {"name": "events", "type": "array of EventOdds", "required": true, "description": "List of events with odds for the specified sport/league"}
+      ]
+    },
+    {
+      "name": "EventOdds",
+      "description": "A single event with all available odds across sportsbooks",
+      "fields": [
+        {"name": "eventId", "type": "string", "required": true, "description": "Unique event identifier"},
+        {"name": "homeTeam", "type": "string", "required": true, "description": "Home team name"},
+        {"name": "awayTeam", "type": "string", "required": true, "description": "Away team name"},
+        {"name": "startTime", "type": "string (ISO 8601)", "required": true, "description": "Game start time in UTC"},
+        {"name": "status", "type": "string enum", "required": false, "description": "Game status: scheduled | live | final"},
+        {"name": "markets", "type": "array of MarketOdds", "required": false, "description": "Available betting markets with odds from each sportsbook"}
+      ]
+    },
+    {
+      "name": "MarketOdds",
+      "description": "Odds for a specific betting market type from all sportsbooks",
+      "fields": [
+        {"name": "market", "type": "string enum", "required": true, "description": "Market type: spread | moneyline | total | prop | future"},
+        {"name": "period", "type": "string", "required": false, "description": "Game period: fullgame | firsthalf | firstquarter | etc."},
+        {"name": "bookmakers", "type": "array of BookmakerOdds", "required": true, "description": "Odds from each sportsbook for this market"}
+      ]
+    },
+    {
+      "name": "BookmakerOdds",
+      "description": "Odds from a single sportsbook",
+      "fields": [
+        {"name": "bookmaker", "type": "string", "required": true, "description": "Sportsbook name (FanDuel, DraftKings, BetMGM, etc.)"},
+        {"name": "homeOdds", "type": "number", "required": false, "description": "Home team or over odds in American format"},
+        {"name": "awayOdds", "type": "number", "required": false, "description": "Away team or under odds in American format"},
+        {"name": "line", "type": "number", "required": false, "description": "Spread or total line value"},
+        {"name": "lastUpdated", "type": "string (ISO 8601)", "required": false, "description": "Last update time (updates every minute)"}
+      ]
+    },
+    {
+      "name": "ArbitrageOpportunity",
+      "description": "A guaranteed profit betting opportunity across two sportsbooks",
+      "fields": [
+        {"name": "eventId", "type": "string", "required": true, "description": "Event identifier"},
+        {"name": "market", "type": "string", "required": true, "description": "Betting market with the arbitrage"},
+        {"name": "bookmaker1", "type": "string", "required": true, "description": "First sportsbook"},
+        {"name": "bookmaker2", "type": "string", "required": true, "description": "Second sportsbook"},
+        {"name": "profit", "type": "number", "required": true, "description": "Guaranteed profit percentage"},
+        {"name": "homeOdds", "type": "number", "required": false, "description": "Home odds from bookmaker1"},
+        {"name": "awayOdds", "type": "number", "required": false, "description": "Away odds from bookmaker2"}
+      ]
+    },
+    {
+      "name": "PositiveEvBet",
+      "description": "A bet with positive expected value vs. sharp consensus or no-vig fair odds",
+      "fields": [
+        {"name": "eventId", "type": "string", "required": true, "description": "Event identifier"},
+        {"name": "team", "type": "string", "required": true, "description": "Team or side to bet on"},
+        {"name": "market", "type": "string", "required": true, "description": "Betting market type"},
+        {"name": "bookmaker", "type": "string", "required": true, "description": "Sportsbook offering the +EV line"},
+        {"name": "odds", "type": "number", "required": true, "description": "Available odds in American format"},
+        {"name": "expectedValue", "type": "number", "required": true, "description": "Expected value percentage"},
+        {"name": "fairOdds", "type": "number", "required": false, "description": "No-vig fair odds consensus"}
+      ]
+    }
+  ]
+}

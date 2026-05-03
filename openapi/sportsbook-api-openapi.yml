@@ -1,0 +1,396 @@
+openapi: 3.1.0
+info:
+  title: Sportsbook API
+  description: >-
+    Sportsbook API provides real-time betting odds data from major US sportsbooks
+    including FanDuel, DraftKings, BetMGM, Kalshi, theScore, Fanatics, BetRivers,
+    Polymarket, Bovada, and BetOnline. The API covers NFL, NBA, MLB, NHL, NCAA
+    football, NCAA basketball, soccer, and more with spreads, moneylines, totals,
+    halves, quarters, props, and futures markets. Odds update once per minute with
+    positive EV, arbitrage, and middle opportunity detection.
+  version: '1.0'
+  contact:
+    url: https://sportsbookapi.com/
+  termsOfService: https://sportsbookapi.com/terms
+servers:
+  - url: https://api.sportsbookapi.com
+    description: Production server
+security:
+  - rapidApiKey: []
+components:
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
+  schemas:
+    OddsResponse:
+      type: object
+      properties:
+        sport:
+          type: string
+          description: Sport name
+        league:
+          type: string
+          description: League abbreviation
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventOdds'
+    EventOdds:
+      type: object
+      properties:
+        eventId:
+          type: string
+        homeTeam:
+          type: string
+        awayTeam:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum: [scheduled, live, final]
+        markets:
+          type: array
+          items:
+            $ref: '#/components/schemas/MarketOdds'
+    MarketOdds:
+      type: object
+      properties:
+        market:
+          type: string
+          description: Market type (spread, moneyline, total, prop)
+        period:
+          type: string
+          description: Game period (fullgame, firsthalf, firstquarter)
+        bookmakers:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookmakerOdds'
+    BookmakerOdds:
+      type: object
+      properties:
+        bookmaker:
+          type: string
+          description: Sportsbook name
+        homeOdds:
+          type: number
+          format: float
+          description: Home team or over odds in American format
+        awayOdds:
+          type: number
+          format: float
+          description: Away team or under odds in American format
+        line:
+          type: number
+          format: float
+          description: Point spread or total points line
+        lastUpdated:
+          type: string
+          format: date-time
+    ArbitrageOpportunity:
+      type: object
+      properties:
+        eventId:
+          type: string
+        market:
+          type: string
+        bookmaker1:
+          type: string
+        bookmaker2:
+          type: string
+        profit:
+          type: number
+          format: float
+          description: Expected profit percentage
+        homeOdds:
+          type: number
+          format: float
+        awayOdds:
+          type: number
+          format: float
+    PositiveEvBet:
+      type: object
+      properties:
+        eventId:
+          type: string
+        team:
+          type: string
+        market:
+          type: string
+        bookmaker:
+          type: string
+        odds:
+          type: number
+          format: float
+        expectedValue:
+          type: number
+          format: float
+          description: Expected value percentage
+        fairOdds:
+          type: number
+          format: float
+    MiddleOpportunity:
+      type: object
+      properties:
+        eventId:
+          type: string
+        market:
+          type: string
+        bookmaker1:
+          type: string
+        bookmaker2:
+          type: string
+        line1:
+          type: number
+          format: float
+        line2:
+          type: number
+          format: float
+        window:
+          type: number
+          format: float
+          description: Middle window in points
+paths:
+  /v1/odds:
+    get:
+      operationId: getOdds
+      summary: Get Odds
+      description: Retrieve real-time betting odds from multiple sportsbooks for a given sport and league.
+      tags:
+        - Odds
+      parameters:
+        - name: sport
+          in: query
+          required: true
+          description: Sport to retrieve odds for (football, basketball, baseball, hockey, soccer)
+          schema:
+            type: string
+            enum: [football, basketball, baseball, hockey, soccer]
+        - name: league
+          in: query
+          required: false
+          description: League filter (NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, MLS)
+          schema:
+            type: string
+        - name: market
+          in: query
+          required: false
+          description: Betting market type
+          schema:
+            type: string
+            enum: [spread, moneyline, total, prop, future]
+        - name: bookmaker
+          in: query
+          required: false
+          description: Filter by specific sportsbook
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Odds data from multiple sportsbooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OddsResponse'
+        '401':
+          description: Unauthorized - missing or invalid API key
+        '429':
+          description: Rate limit exceeded
+  /v1/odds/{eventId}:
+    get:
+      operationId: getEventOdds
+      summary: Get Event Odds
+      description: Retrieve all odds for a specific event across all sportsbooks and markets.
+      tags:
+        - Odds
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          description: Unique event identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Event odds details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventOdds'
+        '404':
+          description: Event not found
+  /v1/arbitrage:
+    get:
+      operationId: getArbitrage
+      summary: Get Arbitrage Opportunities
+      description: Retrieve current arbitrage opportunities across sportsbooks where guaranteed profit is possible.
+      tags:
+        - Betting Analysis
+      parameters:
+        - name: sport
+          in: query
+          required: false
+          description: Filter by sport
+          schema:
+            type: string
+        - name: league
+          in: query
+          required: false
+          description: Filter by league
+          schema:
+            type: string
+        - name: minProfit
+          in: query
+          required: false
+          description: Minimum profit percentage threshold
+          schema:
+            type: number
+            format: float
+      responses:
+        '200':
+          description: List of arbitrage opportunities
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  opportunities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ArbitrageOpportunity'
+  /v1/positive-ev:
+    get:
+      operationId: getPositiveEV
+      summary: Get Positive EV Bets
+      description: Retrieve bets with positive expected value compared to sharp consensus or no-vig fair odds.
+      tags:
+        - Betting Analysis
+      parameters:
+        - name: sport
+          in: query
+          required: false
+          description: Filter by sport
+          schema:
+            type: string
+        - name: league
+          in: query
+          required: false
+          description: Filter by league
+          schema:
+            type: string
+        - name: minEv
+          in: query
+          required: false
+          description: Minimum expected value percentage
+          schema:
+            type: number
+            format: float
+      responses:
+        '200':
+          description: List of positive EV bets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bets:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PositiveEvBet'
+  /v1/middles:
+    get:
+      operationId: getMiddles
+      summary: Get Middle Opportunities
+      description: Retrieve current middling opportunities where betting both sides can result in winning both bets.
+      tags:
+        - Betting Analysis
+      parameters:
+        - name: sport
+          in: query
+          required: false
+          description: Filter by sport
+          schema:
+            type: string
+        - name: league
+          in: query
+          required: false
+          description: Filter by league
+          schema:
+            type: string
+        - name: minWindow
+          in: query
+          required: false
+          description: Minimum middle window in points
+          schema:
+            type: number
+            format: float
+      responses:
+        '200':
+          description: List of middle opportunities
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  middles:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MiddleOpportunity'
+  /v1/sports:
+    get:
+      operationId: listSports
+      summary: List Sports
+      description: Retrieve all supported sports and their available leagues.
+      tags:
+        - Reference
+      responses:
+        '200':
+          description: List of supported sports
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sports:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        leagues:
+                          type: array
+                          items:
+                            type: string
+  /v1/bookmakers:
+    get:
+      operationId: listBookmakers
+      summary: List Bookmakers
+      description: Retrieve all supported sportsbooks that odds are aggregated from.
+      tags:
+        - Reference
+      responses:
+        '200':
+          description: List of supported sportsbooks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bookmakers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        states:
+                          type: array
+                          items:
+                            type: string
+                          description: US states where this sportsbook is legal

@@ -1,0 +1,40 @@
+{
+  "name": "Get Arbitrage Opportunities",
+  "description": "Example request and response for finding guaranteed profit arbitrage opportunities across sportsbooks",
+  "request": {
+    "method": "GET",
+    "url": "https://api.sportsbookapi.com/v1/arbitrage",
+    "headers": {
+      "X-RapidAPI-Key": "your_rapidapi_key_here",
+      "X-RapidAPI-Host": "sportsbook-api2.p.rapidapi.com"
+    },
+    "parameters": {
+      "sport": "basketball",
+      "league": "NBA",
+      "minProfit": 1.0
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "opportunities": [
+        {
+          "eventId": "nba-2025-lal-vs-gsw",
+          "homeTeam": "Golden State Warriors",
+          "awayTeam": "Los Angeles Lakers",
+          "sport": "basketball",
+          "league": "NBA",
+          "market": "moneyline",
+          "period": "fullgame",
+          "bookmaker1": "Bovada",
+          "bookmaker2": "FanDuel",
+          "homeOdds": 165,
+          "awayOdds": -165,
+          "profit": 1.8,
+          "impliedProbabilitySum": 0.982,
+          "detectedAt": "2025-12-15T14:32:00Z"
+        }
+      ]
+    }
+  }
+}

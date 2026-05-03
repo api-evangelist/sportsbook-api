@@ -1,0 +1,275 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Sportsbook API"
+  description: >-
+    Real-time sports betting odds aggregator from 10+ major US sportsbooks including
+    FanDuel, DraftKings, BetMGM, Kalshi, BetRivers, Bovada, and Polymarket. Covers NFL,
+    NBA, MLB, NHL, NCAA, and soccer with automated arbitrage, positive EV, and middle detection.
+  tags:
+    - Sports Betting
+    - Odds
+    - Arbitrage
+    - Expected Value
+    - NFL
+    - NBA
+    - MLB
+    - NHL
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      RAPIDAPI_KEY: RAPIDAPI_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: sportsbook-api
+      baseUri: https://api.sportsbookapi.com
+      description: "Sportsbook API for real-time odds and betting analysis"
+      authentication:
+        type: apikey
+        key: X-RapidAPI-Key
+        value: "{{RAPIDAPI_KEY}}"
+        placement: header
+      resources:
+        - name: odds
+          path: /v1/odds
+          description: "Real-time odds from multiple sportsbooks"
+          operations:
+            - name: get-odds
+              method: GET
+              description: "Retrieve real-time betting odds for a sport and league"
+              inputParameters:
+                - name: sport
+                  in: query
+                  type: string
+                  required: true
+                  description: "Sport (football, basketball, baseball, hockey, soccer)"
+                - name: league
+                  in: query
+                  type: string
+                  required: false
+                  description: "League (NFL, NBA, MLB, NHL, NCAAF, EPL)"
+                - name: market
+                  in: query
+                  type: string
+                  required: false
+                  description: "Market type (spread, moneyline, total, prop)"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: arbitrage
+          path: /v1/arbitrage
+          description: "Guaranteed profit arbitrage opportunities"
+          operations:
+            - name: get-arbitrage
+              method: GET
+              description: "Find arbitrage opportunities across sportsbooks"
+              inputParameters:
+                - name: sport
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by sport"
+                - name: league
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by league"
+                - name: minProfit
+                  in: query
+                  type: number
+                  required: false
+                  description: "Minimum profit percentage"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: positive-ev
+          path: /v1/positive-ev
+          description: "Positive expected value bets"
+          operations:
+            - name: get-positive-ev
+              method: GET
+              description: "Find bets with positive expected value vs. fair odds"
+              inputParameters:
+                - name: sport
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by sport"
+                - name: league
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by league"
+                - name: minEv
+                  in: query
+                  type: number
+                  required: false
+                  description: "Minimum EV percentage"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: middles
+          path: /v1/middles
+          description: "Middle betting opportunities"
+          operations:
+            - name: get-middles
+              method: GET
+              description: "Find middling opportunities where both sides can win"
+              inputParameters:
+                - name: sport
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by sport"
+                - name: league
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by league"
+                - name: minWindow
+                  in: query
+                  type: number
+                  required: false
+                  description: "Minimum middle window in points"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: sports
+          path: /v1/sports
+          description: "Supported sports catalog"
+          operations:
+            - name: list-sports
+              method: GET
+              description: "List all supported sports and leagues"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: bookmakers
+          path: /v1/bookmakers
+          description: "Supported sportsbooks catalog"
+          operations:
+            - name: list-bookmakers
+              method: GET
+              description: "List all aggregated sportsbooks"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: sportsbook-rest
+      resources:
+        - path: /v1/odds
+          name: odds
+          description: "Real-time sportsbook odds"
+          operations:
+            - method: GET
+              name: get-odds
+              description: "Get odds from multiple sportsbooks"
+              call: "sportsbook-api.get-odds"
+              with:
+                sport: "rest.sport"
+                league: "rest.league"
+                market: "rest.market"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: sportsbook-mcp
+      transport: http
+      tools:
+        - name: get-odds
+          description: "Get real-time betting odds from 10+ sportsbooks for a sport/league"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.get-odds"
+          with:
+            sport: "tools.sport"
+            league: "tools.league"
+            market: "tools.market"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-arbitrage
+          description: "Find guaranteed profit arbitrage opportunities across sportsbooks"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.get-arbitrage"
+          with:
+            sport: "tools.sport"
+            league: "tools.league"
+            minProfit: "tools.minProfit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-positive-ev
+          description: "Find positive expected value bets vs. no-vig fair odds consensus"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.get-positive-ev"
+          with:
+            sport: "tools.sport"
+            league: "tools.league"
+            minEv: "tools.minEv"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-middles
+          description: "Find middling opportunities where both sides can win with the right score"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.get-middles"
+          with:
+            sport: "tools.sport"
+            league: "tools.league"
+            minWindow: "tools.minWindow"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-sports
+          description: "List all sports and leagues covered by Sportsbook API"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.list-sports"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-bookmakers
+          description: "List all sportsbooks aggregated (FanDuel, DraftKings, BetMGM, etc.)"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "sportsbook-api.list-bookmakers"
+          outputParameters:
+            - type: object
+              mapping: "$."

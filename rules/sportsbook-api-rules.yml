@@ -1,0 +1,98 @@
+extends: spectral:oas
+rules:
+  # Sportsbook API-specific conventions
+
+  sportsbook-api-operation-tags:
+    description: All operations must have exactly one tag from the approved list.
+    message: "Operation must include a valid tag (Odds, Betting Analysis, Reference)."
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+            enum:
+              - Odds
+              - Betting Analysis
+              - Reference
+
+  sportsbook-api-v1-prefix:
+    description: All paths must be prefixed with /v1/.
+    message: "Path '{{property}}' must be prefixed with /v1/."
+    severity: error
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^\\/v1\\/"
+
+  sportsbook-api-operation-ids-camel-case:
+    description: OperationIds must use camelCase.
+    message: "OperationId '{{value}}' must use camelCase."
+    severity: error
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  sportsbook-api-get-response-200:
+    description: All GET operations must define a 200 response.
+    message: "GET operation must define a 200 response."
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: truthy
+
+  sportsbook-api-rapidapi-auth:
+    description: API must use X-RapidAPI-Key header authentication.
+    message: "API must define rapidApiKey security scheme with X-RapidAPI-Key header."
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      field: rapidApiKey
+      function: truthy
+
+  sportsbook-api-sport-param-enum:
+    description: Sport query parameter should use enum values.
+    message: "Sport parameter should define enum values."
+    severity: warn
+    given: "$.paths[*][*].parameters[?(@.name == 'sport')].schema"
+    then:
+      field: enum
+      function: truthy
+
+  sportsbook-api-summary-title-case:
+    description: Operation summaries must use Title Case.
+    message: "Summary '{{value}}' must use Title Case."
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z]*(\\s[A-Z][a-zA-Z]*)*$"
+
+  sportsbook-api-401-response:
+    description: All operations should define a 401 Unauthorized response.
+    message: "Operation should define a 401 response for unauthorized access."
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: responses.401
+      function: truthy
+
+  sportsbook-api-429-rate-limit:
+    description: Operations that may be rate-limited should document 429 response.
+    message: "Operation should define a 429 response for rate limiting."
+    severity: warn
+    given: "$.paths[*].get"
+    then:
+      field: responses.429
+      function: truthy

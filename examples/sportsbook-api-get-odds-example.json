@@ -1,0 +1,99 @@
+{
+  "name": "Get NFL Odds from Multiple Sportsbooks",
+  "description": "Example request and response for fetching NFL spread, moneyline, and total odds from multiple sportsbooks",
+  "request": {
+    "method": "GET",
+    "url": "https://api.sportsbookapi.com/v1/odds",
+    "headers": {
+      "X-RapidAPI-Key": "your_rapidapi_key_here",
+      "X-RapidAPI-Host": "sportsbook-api2.p.rapidapi.com"
+    },
+    "parameters": {
+      "sport": "football",
+      "league": "NFL"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "sport": "football",
+      "league": "NFL",
+      "events": [
+        {
+          "eventId": "nfl-2025-kc-vs-phi",
+          "homeTeam": "Philadelphia Eagles",
+          "awayTeam": "Kansas City Chiefs",
+          "startTime": "2025-12-14T21:25:00Z",
+          "status": "scheduled",
+          "markets": [
+            {
+              "market": "spread",
+              "period": "fullgame",
+              "bookmakers": [
+                {
+                  "bookmaker": "FanDuel",
+                  "homeOdds": -110,
+                  "awayOdds": -110,
+                  "line": 3.0,
+                  "lastUpdated": "2025-12-14T18:00:00Z"
+                },
+                {
+                  "bookmaker": "DraftKings",
+                  "homeOdds": -112,
+                  "awayOdds": -108,
+                  "line": 3.0,
+                  "lastUpdated": "2025-12-14T17:58:00Z"
+                },
+                {
+                  "bookmaker": "BetMGM",
+                  "homeOdds": -110,
+                  "awayOdds": -110,
+                  "line": 2.5,
+                  "lastUpdated": "2025-12-14T17:55:00Z"
+                }
+              ]
+            },
+            {
+              "market": "moneyline",
+              "period": "fullgame",
+              "bookmakers": [
+                {
+                  "bookmaker": "FanDuel",
+                  "homeOdds": -160,
+                  "awayOdds": 134,
+                  "lastUpdated": "2025-12-14T18:00:00Z"
+                },
+                {
+                  "bookmaker": "DraftKings",
+                  "homeOdds": -155,
+                  "awayOdds": 130,
+                  "lastUpdated": "2025-12-14T17:58:00Z"
+                }
+              ]
+            },
+            {
+              "market": "total",
+              "period": "fullgame",
+              "bookmakers": [
+                {
+                  "bookmaker": "FanDuel",
+                  "homeOdds": -110,
+                  "awayOdds": -110,
+                  "line": 47.5,
+                  "lastUpdated": "2025-12-14T18:00:00Z"
+                },
+                {
+                  "bookmaker": "DraftKings",
+                  "homeOdds": -108,
+                  "awayOdds": -112,
+                  "line": 47.5,
+                  "lastUpdated": "2025-12-14T17:58:00Z"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

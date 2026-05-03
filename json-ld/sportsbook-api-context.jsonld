@@ -1,0 +1,64 @@
+{
+  "@context": {
+    "@vocab": "https://sportsbookapi.com/ontology/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gr": "http://purl.org/goodrelations/v1#",
+
+    "OddsResponse": "sportsbook:OddsDataSet",
+    "sport": "sportsbook:sport",
+    "league": "sportsbook:league",
+    "events": "sportsbook:hasEvent",
+
+    "EventOdds": "schema:SportsEvent",
+    "eventId": "@id",
+    "homeTeam": {
+      "@id": "schema:homeTeam",
+      "@type": "schema:SportsTeam"
+    },
+    "awayTeam": {
+      "@id": "schema:awayTeam",
+      "@type": "schema:SportsTeam"
+    },
+    "startTime": {
+      "@id": "schema:startDate",
+      "@type": "xsd:dateTime"
+    },
+    "status": "schema:eventStatus",
+    "markets": "sportsbook:hasBettingMarket",
+
+    "MarketOdds": "sportsbook:BettingMarket",
+    "market": "sportsbook:marketType",
+    "period": "sportsbook:gamePeriod",
+    "bookmakers": "sportsbook:hasBookmaker",
+
+    "BookmakerOdds": "sportsbook:BookmakerLine",
+    "bookmaker": "sportsbook:bookmakerName",
+    "homeOdds": "sportsbook:homeOdds",
+    "awayOdds": "sportsbook:awayOdds",
+    "line": "sportsbook:pointLine",
+    "lastUpdated": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+
+    "ArbitrageOpportunity": "sportsbook:ArbitrageBet",
+    "bookmaker1": "sportsbook:primaryBookmaker",
+    "bookmaker2": "sportsbook:secondaryBookmaker",
+    "profit": "sportsbook:guaranteedProfit",
+    "impliedProbabilitySum": "sportsbook:impliedProbabilitySum",
+    "detectedAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+
+    "PositiveEvBet": "sportsbook:PositiveExpectedValueBet",
+    "expectedValue": "sportsbook:expectedValue",
+    "fairOdds": "sportsbook:noVigOdds",
+
+    "MiddleOpportunity": "sportsbook:MiddleBet",
+    "window": "sportsbook:middleWindow",
+    "line1": "sportsbook:primaryLine",
+    "line2": "sportsbook:secondaryLine"
+  }
+}

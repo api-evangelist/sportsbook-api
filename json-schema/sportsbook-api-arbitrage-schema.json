@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sportsbookapi.com/schemas/arbitrage",
+  "title": "Sportsbook API Arbitrage Opportunity",
+  "description": "A sports betting arbitrage opportunity where a guaranteed profit is possible by betting on both sides across different sportsbooks",
+  "type": "object",
+  "required": ["eventId", "market", "bookmaker1", "bookmaker2", "profit"],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "description": "Unique event identifier"
+    },
+    "homeTeam": {
+      "type": "string",
+      "description": "Home team name"
+    },
+    "awayTeam": {
+      "type": "string",
+      "description": "Away team name"
+    },
+    "sport": {
+      "type": "string",
+      "description": "Sport name"
+    },
+    "league": {
+      "type": "string",
+      "description": "League abbreviation"
+    },
+    "market": {
+      "type": "string",
+      "description": "Betting market type (spread, moneyline, total)"
+    },
+    "period": {
+      "type": "string",
+      "description": "Game period for the arbitrage"
+    },
+    "bookmaker1": {
+      "type": "string",
+      "description": "First sportsbook in the arbitrage pair"
+    },
+    "bookmaker2": {
+      "type": "string",
+      "description": "Second sportsbook in the arbitrage pair"
+    },
+    "homeOdds": {
+      "type": "number",
+      "description": "Home team or over odds from bookmaker1 in American format"
+    },
+    "awayOdds": {
+      "type": "number",
+      "description": "Away team or under odds from bookmaker2 in American format"
+    },
+    "profit": {
+      "type": "number",
+      "description": "Guaranteed profit percentage (e.g., 2.5 means 2.5% guaranteed return)",
+      "minimum": 0
+    },
+    "impliedProbabilitySum": {
+      "type": "number",
+      "description": "Sum of implied probabilities (must be < 1.0 for true arbitrage)",
+      "exclusiveMaximum": 1.0
+    },
+    "detectedAt": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the arbitrage opportunity was detected"
+    }
+  }
+}
