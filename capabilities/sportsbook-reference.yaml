@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sportsbook API — Reference
+  description: 'Sportsbook API — Reference. 2 operations. Lead operation: List Bookmakers. Self-contained Naftiko capability
+    covering one Sportsbook Api business surface.'
+  tags:
+  - Sportsbook Api
+  - Reference
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPORTSBOOK_API_API_KEY: SPORTSBOOK_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sportsbook-reference
+    baseUri: https://api.sportsbookapi.com
+    description: Sportsbook API — Reference business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-bookmakers
+      path: /v1/bookmakers
+      operations:
+      - name: listbookmakers
+        method: GET
+        description: List Bookmakers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-sports
+      path: /v1/sports
+      operations:
+      - name: listsports
+        method: GET
+        description: List Sports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.SPORTSBOOK_API_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: sportsbook-reference-rest
+    port: 8080
+    description: REST adapter for Sportsbook API — Reference. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/bookmakers
+      name: v1-bookmakers
+      description: REST surface for v1-bookmakers.
+      operations:
+      - method: GET
+        name: listbookmakers
+        description: List Bookmakers
+        call: sportsbook-reference.listbookmakers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/sports
+      name: v1-sports
+      description: REST surface for v1-sports.
+      operations:
+      - method: GET
+        name: listsports
+        description: List Sports
+        call: sportsbook-reference.listsports
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sportsbook-reference-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sportsbook API — Reference. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-bookmakers
+      description: List Bookmakers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sportsbook-reference.listbookmakers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-sports
+      description: List Sports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sportsbook-reference.listsports
+      outputParameters:
+      - type: object
+        mapping: $.

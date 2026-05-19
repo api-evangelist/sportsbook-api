@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sportsbook API — Betting Analysis
+  description: 'Sportsbook API — Betting Analysis. 3 operations. Lead operation: Get Arbitrage Opportunities. Self-contained
+    Naftiko capability covering one Sportsbook Api business surface.'
+  tags:
+  - Sportsbook Api
+  - Betting Analysis
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPORTSBOOK_API_API_KEY: SPORTSBOOK_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sportsbook-betting-analysis
+    baseUri: https://api.sportsbookapi.com
+    description: Sportsbook API — Betting Analysis business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-arbitrage
+      path: /v1/arbitrage
+      operations:
+      - name: getarbitrage
+        method: GET
+        description: Get Arbitrage Opportunities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Filter by sport
+        - name: league
+          in: query
+          type: string
+          description: Filter by league
+        - name: minProfit
+          in: query
+          type: number
+          description: Minimum profit percentage threshold
+    - name: v1-middles
+      path: /v1/middles
+      operations:
+      - name: getmiddles
+        method: GET
+        description: Get Middle Opportunities
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Filter by sport
+        - name: league
+          in: query
+          type: string
+          description: Filter by league
+        - name: minWindow
+          in: query
+          type: number
+          description: Minimum middle window in points
+    - name: v1-positive-ev
+      path: /v1/positive-ev
+      operations:
+      - name: getpositiveev
+        method: GET
+        description: Get Positive EV Bets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Filter by sport
+        - name: league
+          in: query
+          type: string
+          description: Filter by league
+        - name: minEv
+          in: query
+          type: number
+          description: Minimum expected value percentage
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.SPORTSBOOK_API_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: sportsbook-betting-analysis-rest
+    port: 8080
+    description: REST adapter for Sportsbook API — Betting Analysis. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/arbitrage
+      name: v1-arbitrage
+      description: REST surface for v1-arbitrage.
+      operations:
+      - method: GET
+        name: getarbitrage
+        description: Get Arbitrage Opportunities
+        call: sportsbook-betting-analysis.getarbitrage
+        with:
+          sport: rest.sport
+          league: rest.league
+          minProfit: rest.minProfit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/middles
+      name: v1-middles
+      description: REST surface for v1-middles.
+      operations:
+      - method: GET
+        name: getmiddles
+        description: Get Middle Opportunities
+        call: sportsbook-betting-analysis.getmiddles
+        with:
+          sport: rest.sport
+          league: rest.league
+          minWindow: rest.minWindow
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/positive-ev
+      name: v1-positive-ev
+      description: REST surface for v1-positive-ev.
+      operations:
+      - method: GET
+        name: getpositiveev
+        description: Get Positive EV Bets
+        call: sportsbook-betting-analysis.getpositiveev
+        with:
+          sport: rest.sport
+          league: rest.league
+          minEv: rest.minEv
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sportsbook-betting-analysis-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sportsbook API — Betting Analysis. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: get-arbitrage-opportunities
+      description: Get Arbitrage Opportunities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sportsbook-betting-analysis.getarbitrage
+      with:
+        sport: tools.sport
+        league: tools.league
+        minProfit: tools.minProfit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-middle-opportunities
+      description: Get Middle Opportunities
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sportsbook-betting-analysis.getmiddles
+      with:
+        sport: tools.sport
+        league: tools.league
+        minWindow: tools.minWindow
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-positive-ev-bets
+      description: Get Positive EV Bets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sportsbook-betting-analysis.getpositiveev
+      with:
+        sport: tools.sport
+        league: tools.league
+        minEv: tools.minEv
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,142 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sportsbook API — Odds
+  description: 'Sportsbook API — Odds. 2 operations. Lead operation: Get Odds. Self-contained Naftiko capability covering
+    one Sportsbook Api business surface.'
+  tags:
+  - Sportsbook Api
+  - Odds
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SPORTSBOOK_API_API_KEY: SPORTSBOOK_API_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: sportsbook-odds
+    baseUri: https://api.sportsbookapi.com
+    description: Sportsbook API — Odds business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-odds
+      path: /v1/odds
+      operations:
+      - name: getodds
+        method: GET
+        description: Get Odds
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sport
+          in: query
+          type: string
+          description: Sport to retrieve odds for (football, basketball, baseball, hockey, soccer)
+          required: true
+        - name: league
+          in: query
+          type: string
+          description: League filter (NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, MLS)
+        - name: market
+          in: query
+          type: string
+          description: Betting market type
+        - name: bookmaker
+          in: query
+          type: string
+          description: Filter by specific sportsbook
+    - name: v1-odds-eventId
+      path: /v1/odds/{eventId}
+      operations:
+      - name: geteventodds
+        method: GET
+        description: Get Event Odds
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventId
+          in: path
+          type: string
+          description: Unique event identifier
+          required: true
+    authentication:
+      type: apikey
+      key: X-RapidAPI-Key
+      value: '{{env.SPORTSBOOK_API_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: sportsbook-odds-rest
+    port: 8080
+    description: REST adapter for Sportsbook API — Odds. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/odds
+      name: v1-odds
+      description: REST surface for v1-odds.
+      operations:
+      - method: GET
+        name: getodds
+        description: Get Odds
+        call: sportsbook-odds.getodds
+        with:
+          sport: rest.sport
+          league: rest.league
+          market: rest.market
+          bookmaker: rest.bookmaker
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/odds/{eventid}
+      name: v1-odds-eventid
+      description: REST surface for v1-odds-eventId.
+      operations:
+      - method: GET
+        name: geteventodds
+        description: Get Event Odds
+        call: sportsbook-odds.geteventodds
+        with:
+          eventId: rest.eventId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: sportsbook-odds-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Sportsbook API — Odds. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: get-odds
+      description: Get Odds
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sportsbook-odds.getodds
+      with:
+        sport: tools.sport
+        league: tools.league
+        market: tools.market
+        bookmaker: tools.bookmaker
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-event-odds
+      description: Get Event Odds
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: sportsbook-odds.geteventodds
+      with:
+        eventId: tools.eventId
+      outputParameters:
+      - type: object
+        mapping: $.
