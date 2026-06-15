@@ -1,0 +1,950 @@
+{
+  "item": [
+    {
+      "id": "8daf20dc-6469-4823-867d-bc2f34502e4f",
+      "name": "Odds",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7410132f-be63-4619-b298-c4b8ac5b21ee",
+          "name": "Get Odds",
+          "request": {
+            "name": "Get Odds",
+            "description": {
+              "content": "Retrieve real-time betting odds from multiple sportsbooks for a given sport and league.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "odds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "(Required) Sport to retrieve odds for (football, basketball, baseball, hockey, soccer)"
+                },
+                {
+                  "disabled": false,
+                  "key": "league",
+                  "value": "<string>",
+                  "description": "League filter (NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, MLS)"
+                },
+                {
+                  "disabled": false,
+                  "key": "market",
+                  "value": "<string>",
+                  "description": "Betting market type"
+                },
+                {
+                  "disabled": false,
+                  "key": "bookmaker",
+                  "value": "<string>",
+                  "description": "Filter by specific sportsbook"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6acd2ba2-15f6-4bf0-a24a-900533d701bf",
+              "name": "Odds data from multiple sportsbooks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "odds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookmaker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sport\": \"string\",\n  \"league\": \"string\",\n  \"events\": [\n    {\n      \"eventId\": \"string\",\n      \"homeTeam\": \"string\",\n      \"awayTeam\": \"string\",\n      \"startTime\": \"1959-05-25T14:19:10.355Z\",\n      \"status\": \"final\",\n      \"markets\": [\n        {\n          \"market\": \"string\",\n          \"period\": \"string\",\n          \"bookmakers\": [\n            {\n              \"bookmaker\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"homeOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"awayOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"line\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastUpdated\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bookmaker\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"homeOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"awayOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"line\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastUpdated\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"market\": \"string\",\n          \"period\": \"string\",\n          \"bookmakers\": [\n            {\n              \"bookmaker\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"homeOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"awayOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"line\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastUpdated\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bookmaker\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"homeOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"awayOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"line\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastUpdated\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"eventId\": \"string\",\n      \"homeTeam\": \"string\",\n      \"awayTeam\": \"string\",\n      \"startTime\": \"1962-01-18T20:35:56.682Z\",\n      \"status\": \"scheduled\",\n      \"markets\": [\n        {\n          \"market\": \"string\",\n          \"period\": \"string\",\n          \"bookmakers\": [\n            {\n              \"bookmaker\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"homeOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"awayOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"line\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastUpdated\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bookmaker\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"homeOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"awayOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"line\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastUpdated\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"market\": \"string\",\n          \"period\": \"string\",\n          \"bookmakers\": [\n            {\n              \"bookmaker\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"homeOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"awayOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"line\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastUpdated\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bookmaker\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"homeOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"awayOdds\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"line\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lastUpdated\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1eec290-0a83-46e4-8d0f-98417142ecc4",
+              "name": "Unauthorized - missing or invalid API key",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "odds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookmaker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3bcfdeb2-50c4-4525-9864-9fe9588f5018",
+              "name": "Rate limit exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "odds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "market",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bookmaker",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75824727-e74f-4317-a3cb-fe8afd3f2fbf",
+          "name": "Get Event Odds",
+          "request": {
+            "name": "Get Event Odds",
+            "description": {
+              "content": "Retrieve all odds for a specific event across all sportsbooks and markets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "odds",
+                ":eventId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventId",
+                  "description": "(Required) Unique event identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5232bc41-5c92-44ee-b98f-5a84b563aa11",
+              "name": "Event odds details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "odds",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) Unique event identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"eventId\": \"string\",\n  \"homeTeam\": \"string\",\n  \"awayTeam\": \"string\",\n  \"startTime\": \"1962-05-09T18:19:20.406Z\",\n  \"status\": \"scheduled\",\n  \"markets\": [\n    {\n      \"market\": \"string\",\n      \"period\": \"string\",\n      \"bookmakers\": [\n        {\n          \"bookmaker\": \"string\",\n          \"homeOdds\": 7638.039580724205,\n          \"awayOdds\": 4863.316966752086,\n          \"line\": 2234.742041758437,\n          \"lastUpdated\": \"2001-11-05T12:59:43.091Z\"\n        },\n        {\n          \"bookmaker\": \"string\",\n          \"homeOdds\": 3143.07965185195,\n          \"awayOdds\": 8264.898035400207,\n          \"line\": 4135.596570930294,\n          \"lastUpdated\": \"1951-06-25T09:22:03.035Z\"\n        }\n      ]\n    },\n    {\n      \"market\": \"string\",\n      \"period\": \"string\",\n      \"bookmakers\": [\n        {\n          \"bookmaker\": \"string\",\n          \"homeOdds\": 4132.293046636777,\n          \"awayOdds\": 262.9604878293368,\n          \"line\": 2716.0044969158225,\n          \"lastUpdated\": \"1948-03-23T05:29:39.398Z\"\n        },\n        {\n          \"bookmaker\": \"string\",\n          \"homeOdds\": 2640.780755558297,\n          \"awayOdds\": 1137.6873674523779,\n          \"line\": 3147.1078415995066,\n          \"lastUpdated\": \"1958-09-27T13:25:41.867Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e5e9461-b243-4171-994c-4ef9e3f6600c",
+              "name": "Event not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "odds",
+                    ":eventId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventId",
+                      "description": "(Required) Unique event identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "95f48aff-49db-4266-8765-27085429efbc",
+      "name": "Betting Analysis",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c07620f6-798c-4c37-a0ad-e12bfd352dc3",
+          "name": "Get Arbitrage Opportunities",
+          "request": {
+            "name": "Get Arbitrage Opportunities",
+            "description": {
+              "content": "Retrieve current arbitrage opportunities across sportsbooks where guaranteed profit is possible.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "arbitrage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "Filter by sport"
+                },
+                {
+                  "disabled": false,
+                  "key": "league",
+                  "value": "<string>",
+                  "description": "Filter by league"
+                },
+                {
+                  "disabled": false,
+                  "key": "minProfit",
+                  "value": "<float>",
+                  "description": "Minimum profit percentage threshold"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "69f4c4e5-bb4f-405a-a4d8-908002fb21e4",
+              "name": "List of arbitrage opportunities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "arbitrage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minProfit",
+                      "value": "<float>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"opportunities\": [\n    {\n      \"eventId\": \"string\",\n      \"market\": \"string\",\n      \"bookmaker1\": \"string\",\n      \"bookmaker2\": \"string\",\n      \"profit\": 6216.060926859319,\n      \"homeOdds\": 7486.901788266913,\n      \"awayOdds\": 4802.961243434634\n    },\n    {\n      \"eventId\": \"string\",\n      \"market\": \"string\",\n      \"bookmaker1\": \"string\",\n      \"bookmaker2\": \"string\",\n      \"profit\": 7522.2820086010515,\n      \"homeOdds\": 4563.3904540626045,\n      \"awayOdds\": 4200.028414218016\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ffacf8af-4974-4df8-ac08-6f3de98634c6",
+          "name": "Get Positive EV Bets",
+          "request": {
+            "name": "Get Positive EV Bets",
+            "description": {
+              "content": "Retrieve bets with positive expected value compared to sharp consensus or no-vig fair odds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "positive-ev"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "Filter by sport"
+                },
+                {
+                  "disabled": false,
+                  "key": "league",
+                  "value": "<string>",
+                  "description": "Filter by league"
+                },
+                {
+                  "disabled": false,
+                  "key": "minEv",
+                  "value": "<float>",
+                  "description": "Minimum expected value percentage"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "70354abf-aea7-4176-ac85-d051cd259e86",
+              "name": "List of positive EV bets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "positive-ev"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minEv",
+                      "value": "<float>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bets\": [\n    {\n      \"eventId\": \"string\",\n      \"team\": \"string\",\n      \"market\": \"string\",\n      \"bookmaker\": \"string\",\n      \"odds\": 4593.323961754475,\n      \"expectedValue\": 6404.546463322592,\n      \"fairOdds\": 2434.962339705652\n    },\n    {\n      \"eventId\": \"string\",\n      \"team\": \"string\",\n      \"market\": \"string\",\n      \"bookmaker\": \"string\",\n      \"odds\": 9815.000498828635,\n      \"expectedValue\": 1143.2019579512232,\n      \"fairOdds\": 5005.408223549867\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "686da76d-8b41-403c-9e7e-d825b307cb80",
+          "name": "Get Middle Opportunities",
+          "request": {
+            "name": "Get Middle Opportunities",
+            "description": {
+              "content": "Retrieve current middling opportunities where betting both sides can result in winning both bets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "middles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sport",
+                  "value": "<string>",
+                  "description": "Filter by sport"
+                },
+                {
+                  "disabled": false,
+                  "key": "league",
+                  "value": "<string>",
+                  "description": "Filter by league"
+                },
+                {
+                  "disabled": false,
+                  "key": "minWindow",
+                  "value": "<float>",
+                  "description": "Minimum middle window in points"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25452a7d-cf04-4c77-8e6f-19cd0e1d6912",
+              "name": "List of middle opportunities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "middles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sport",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "league",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "minWindow",
+                      "value": "<float>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"middles\": [\n    {\n      \"eventId\": \"string\",\n      \"market\": \"string\",\n      \"bookmaker1\": \"string\",\n      \"bookmaker2\": \"string\",\n      \"line1\": 8316.756966365372,\n      \"line2\": 4415.372264640421,\n      \"window\": 648.0338786712159\n    },\n    {\n      \"eventId\": \"string\",\n      \"market\": \"string\",\n      \"bookmaker1\": \"string\",\n      \"bookmaker2\": \"string\",\n      \"line1\": 5800.160593792814,\n      \"line2\": 6670.013567595638,\n      \"window\": 1544.4626014006813\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "739fbd84-d24a-43d3-8b94-4c872a2185c6",
+      "name": "Reference",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eab5891d-7e59-4316-81f8-71f833f88309",
+          "name": "List Sports",
+          "request": {
+            "name": "List Sports",
+            "description": {
+              "content": "Retrieve all supported sports and their available leagues.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c42525ce-ae6c-43bd-96db-128f9007bcaa",
+              "name": "List of supported sports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sports\": [\n    {\n      \"name\": \"string\",\n      \"leagues\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"leagues\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f319e1e-c11b-437d-af6f-e1fd29af4433",
+          "name": "List Bookmakers",
+          "request": {
+            "name": "List Bookmakers",
+            "description": {
+              "content": "Retrieve all supported sportsbooks that odds are aggregated from.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookmakers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27bc2736-f85b-4092-bb96-f4e20d95b727",
+              "name": "List of supported sportsbooks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookmakers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bookmakers\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"states\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"states\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sportsbookapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b9661a2b-e9a8-428c-ae1c-9c3c879f268e",
+    "name": "Sportsbook API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Sportsbook API provides real-time betting odds data from major US sportsbooks including FanDuel, DraftKings, BetMGM, Kalshi, theScore, Fanatics, BetRivers, Polymarket, Bovada, and BetOnline. The API covers NFL, NBA, MLB, NHL, NCAA football, NCAA basketball, soccer, and more with spreads, moneylines, totals, halves, quarters, props, and futures markets. Odds update once per minute with positive EV, arbitrage, and middle opportunity detection.",
+      "type": "text/plain"
+    }
+  }
+}

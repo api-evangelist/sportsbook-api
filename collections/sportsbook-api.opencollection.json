@@ -1,0 +1,213 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sportsbook API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Odds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Odds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsbookapi.com/v1/odds",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Sport to retrieve odds for (football, basketball, baseball, hockey, soccer)"
+              },
+              {
+                "name": "league",
+                "value": "",
+                "type": "query",
+                "description": "League filter (NFL, NBA, MLB, NHL, NCAAF, NCAAB, EPL, MLS)"
+              },
+              {
+                "name": "market",
+                "value": "",
+                "type": "query",
+                "description": "Betting market type"
+              },
+              {
+                "name": "bookmaker",
+                "value": "",
+                "type": "query",
+                "description": "Filter by specific sportsbook"
+              }
+            ]
+          },
+          "docs": "Retrieve real-time betting odds from multiple sportsbooks for a given sport and league."
+        },
+        {
+          "info": {
+            "name": "Get Event Odds",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsbookapi.com/v1/odds/:eventId",
+            "params": [
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "Unique event identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve all odds for a specific event across all sportsbooks and markets."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Betting Analysis",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Arbitrage Opportunities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsbookapi.com/v1/arbitrage",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sport"
+              },
+              {
+                "name": "league",
+                "value": "",
+                "type": "query",
+                "description": "Filter by league"
+              },
+              {
+                "name": "minProfit",
+                "value": "",
+                "type": "query",
+                "description": "Minimum profit percentage threshold"
+              }
+            ]
+          },
+          "docs": "Retrieve current arbitrage opportunities across sportsbooks where guaranteed profit is possible."
+        },
+        {
+          "info": {
+            "name": "Get Positive EV Bets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsbookapi.com/v1/positive-ev",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sport"
+              },
+              {
+                "name": "league",
+                "value": "",
+                "type": "query",
+                "description": "Filter by league"
+              },
+              {
+                "name": "minEv",
+                "value": "",
+                "type": "query",
+                "description": "Minimum expected value percentage"
+              }
+            ]
+          },
+          "docs": "Retrieve bets with positive expected value compared to sharp consensus or no-vig fair odds."
+        },
+        {
+          "info": {
+            "name": "Get Middle Opportunities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsbookapi.com/v1/middles",
+            "params": [
+              {
+                "name": "sport",
+                "value": "",
+                "type": "query",
+                "description": "Filter by sport"
+              },
+              {
+                "name": "league",
+                "value": "",
+                "type": "query",
+                "description": "Filter by league"
+              },
+              {
+                "name": "minWindow",
+                "value": "",
+                "type": "query",
+                "description": "Minimum middle window in points"
+              }
+            ]
+          },
+          "docs": "Retrieve current middling opportunities where betting both sides can result in winning both bets."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Reference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Sports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsbookapi.com/v1/sports"
+          },
+          "docs": "Retrieve all supported sports and their available leagues."
+        },
+        {
+          "info": {
+            "name": "List Bookmakers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsbookapi.com/v1/bookmakers"
+          },
+          "docs": "Retrieve all supported sportsbooks that odds are aggregated from."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
