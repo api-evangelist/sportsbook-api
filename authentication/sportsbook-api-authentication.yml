@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/sportsbook-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: rapidApiKey
+  type: apiKey
+  in: header
+  parameter: X-RapidAPI-Key
+  sources:
+  - openapi/sportsbook-api-openapi.yml

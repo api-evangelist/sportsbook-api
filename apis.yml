@@ -48,12 +48,18 @@ apis:
       - type: Pricing
         url: https://sportsbookapi.com/pricing/
 common:
+  - type: DomainSecurity
+    url: security/sportsbook-api-domain-security.yml
+  - type: Authentication
+    url: authentication/sportsbook-api-authentication.yml
   - type: Website
     url: https://sportsbookapi.com/
   - type: Portal
     url: https://sportsbookapi.com/documentation/
   - type: Pricing
     url: https://sportsbookapi.com/pricing/
+  - url: https://sportsbookapi.com/feed/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
