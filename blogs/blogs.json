@@ -1,0 +1,14 @@
+{
+  "repo": "sportsbook-api",
+  "feeds": [
+    {
+      "source": "https://sportsbookapi.com/feed/",
+      "feed_url": "https://sportsbookapi.com/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 5
+}
