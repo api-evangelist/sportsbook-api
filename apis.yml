@@ -48,6 +48,8 @@ apis:
       - type: Pricing
         url: https://sportsbookapi.com/pricing/
 common:
+  - type: AgenticAccess
+    url: agentic-access/sportsbook-api-agentic-access.yml
   - type: DomainSecurity
     url: security/sportsbook-api-domain-security.yml
   - type: Authentication

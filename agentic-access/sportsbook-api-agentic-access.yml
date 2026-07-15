@@ -1,0 +1,84 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/sportsbook-api-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 7
+  by_action_class:
+    connected: 7
+  by_consequence:
+    read: 7
+  human_in_the_loop_required: 0
+operations:
+- path: /v1/odds
+  method: get
+  operationId: getOdds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/odds/{eventId}
+  method: get
+  operationId: getEventOdds
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/arbitrage
+  method: get
+  operationId: getArbitrage
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/positive-ev
+  method: get
+  operationId: getPositiveEV
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/middles
+  method: get
+  operationId: getMiddles
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/sports
+  method: get
+  operationId: listSports
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/bookmakers
+  method: get
+  operationId: listBookmakers
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
