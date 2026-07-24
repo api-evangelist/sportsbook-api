@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: Sportsbook Betting Analysis Reference API
+  description: Sportsbook API provides real-time betting odds data from major US sportsbooks including FanDuel, DraftKings, BetMGM, Kalshi, theScore, Fanatics, BetRivers, Polymarket, Bovada, and BetOnline. The API covers NFL, NBA, MLB, NHL, NCAA football, NCAA basketball, soccer, and more with spreads, moneylines, totals, halves, quarters, props, and futures markets. Odds update once per minute with positive EV, arbitrage, and middle opportunity detection.
+  version: '1.0'
+  contact:
+    url: https://sportsbookapi.com/
+  termsOfService: https://sportsbookapi.com/terms
+servers:
+- url: https://api.sportsbookapi.com
+  description: Production server
+security:
+- rapidApiKey: []
+tags:
+- name: Reference
+paths:
+  /v1/sports:
+    get:
+      operationId: listSports
+      summary: List Sports
+      description: Retrieve all supported sports and their available leagues.
+      tags:
+      - Reference
+      responses:
+        '200':
+          description: List of supported sports
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sports:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        leagues:
+                          type: array
+                          items:
+                            type: string
+  /v1/bookmakers:
+    get:
+      operationId: listBookmakers
+      summary: List Bookmakers
+      description: Retrieve all supported sportsbooks that odds are aggregated from.
+      tags:
+      - Reference
+      responses:
+        '200':
+          description: List of supported sportsbooks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bookmakers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        states:
+                          type: array
+                          items:
+                            type: string
+                          description: US states where this sportsbook is legal
+components:
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key

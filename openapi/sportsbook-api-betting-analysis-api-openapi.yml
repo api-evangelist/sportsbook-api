@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: Sportsbook Betting Analysis API
+  description: Sportsbook API provides real-time betting odds data from major US sportsbooks including FanDuel, DraftKings, BetMGM, Kalshi, theScore, Fanatics, BetRivers, Polymarket, Bovada, and BetOnline. The API covers NFL, NBA, MLB, NHL, NCAA football, NCAA basketball, soccer, and more with spreads, moneylines, totals, halves, quarters, props, and futures markets. Odds update once per minute with positive EV, arbitrage, and middle opportunity detection.
+  version: '1.0'
+  contact:
+    url: https://sportsbookapi.com/
+  termsOfService: https://sportsbookapi.com/terms
+servers:
+- url: https://api.sportsbookapi.com
+  description: Production server
+security:
+- rapidApiKey: []
+tags:
+- name: Betting Analysis
+paths:
+  /v1/arbitrage:
+    get:
+      operationId: getArbitrage
+      summary: Get Arbitrage Opportunities
+      description: Retrieve current arbitrage opportunities across sportsbooks where guaranteed profit is possible.
+      tags:
+      - Betting Analysis
+      parameters:
+      - name: sport
+        in: query
+        required: false
+        description: Filter by sport
+        schema:
+          type: string
+      - name: league
+        in: query
+        required: false
+        description: Filter by league
+        schema:
+          type: string
+      - name: minProfit
+        in: query
+        required: false
+        description: Minimum profit percentage threshold
+        schema:
+          type: number
+          format: float
+      responses:
+        '200':
+          description: List of arbitrage opportunities
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  opportunities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ArbitrageOpportunity'
+  /v1/positive-ev:
+    get:
+      operationId: getPositiveEV
+      summary: Get Positive EV Bets
+      description: Retrieve bets with positive expected value compared to sharp consensus or no-vig fair odds.
+      tags:
+      - Betting Analysis
+      parameters:
+      - name: sport
+        in: query
+        required: false
+        description: Filter by sport
+        schema:
+          type: string
+      - name: league
+        in: query
+        required: false
+        description: Filter by league
+        schema:
+          type: string
+      - name: minEv
+        in: query
+        required: false
+        description: Minimum expected value percentage
+        schema:
+          type: number
+          format: float
+      responses:
+        '200':
+          description: List of positive EV bets
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bets:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PositiveEvBet'
+  /v1/middles:
+    get:
+      operationId: getMiddles
+      summary: Get Middle Opportunities
+      description: Retrieve current middling opportunities where betting both sides can result in winning both bets.
+      tags:
+      - Betting Analysis
+      parameters:
+      - name: sport
+        in: query
+        required: false
+        description: Filter by sport
+        schema:
+          type: string
+      - name: league
+        in: query
+        required: false
+        description: Filter by league
+        schema:
+          type: string
+      - name: minWindow
+        in: query
+        required: false
+        description: Minimum middle window in points
+        schema:
+          type: number
+          format: float
+      responses:
+        '200':
+          description: List of middle opportunities
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  middles:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/MiddleOpportunity'
+components:
+  schemas:
+    MiddleOpportunity:
+      type: object
+      properties:
+        eventId:
+          type: string
+        market:
+          type: string
+        bookmaker1:
+          type: string
+        bookmaker2:
+          type: string
+        line1:
+          type: number
+          format: float
+        line2:
+          type: number
+          format: float
+        window:
+          type: number
+          format: float
+          description: Middle window in points
+    PositiveEvBet:
+      type: object
+      properties:
+        eventId:
+          type: string
+        team:
+          type: string
+        market:
+          type: string
+        bookmaker:
+          type: string
+        odds:
+          type: number
+          format: float
+        expectedValue:
+          type: number
+          format: float
+          description: Expected value percentage
+        fairOdds:
+          type: number
+          format: float
+    ArbitrageOpportunity:
+      type: object
+      properties:
+        eventId:
+          type: string
+        market:
+          type: string
+        bookmaker1:
+          type: string
+        bookmaker2:
+          type: string
+        profit:
+          type: number
+          format: float
+          description: Expected profit percentage
+        homeOdds:
+          type: number
+          format: float
+        awayOdds:
+          type: number
+          format: float
+  securitySchemes:
+    rapidApiKey:
+      type: apiKey
+      in: header
+      name: X-RapidAPI-Key
