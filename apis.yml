@@ -7,9 +7,22 @@ description: >-
   basketball, and soccer leagues. Includes tools to identify positive expected value (+EV) bets, arbitrage
   opportunities, and middling situations. Odds update once per minute, with live odds available during games.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sportsbook-api.png
 tags:
   - Sports Betting
   - Odds
@@ -20,33 +33,48 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/sportsbook-api/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: sportsbook-api:sportsbook-api
-    name: Sportsbook API
-    description: >-
-      Real-time sports betting odds aggregator providing data from 10+ major US sportsbooks. Covers NFL, NBA, MLB, NHL,
-      NCAA, and soccer with spread, moneyline, total, and prop markets. Features automated detection of arbitrage
-      opportunities, positive EV bets, and middle opportunities. Hosted on RapidAPI with tiered pricing from free (50
-      req/day) to enterprise (50K req/day).
-    humanURL: https://sportsbookapi.com/
-    baseURL: https://api.sportsbookapi.com
-    tags:
-      - Sports Betting
-      - Odds
-      - NFL
-      - NBA
-      - MLB
-      - NHL
-      - Soccer
-      - Arbitrage
-      - Expected Value
-    properties:
-      - type: Documentation
-        url: https://sportsbookapi.com/documentation/
-      - type: OpenAPI
-        url: >-
-          https://raw.githubusercontent.com/api-evangelist/sportsbook-api/refs/heads/main/openapi/sportsbook-api-openapi.yml
-      - type: Pricing
-        url: https://sportsbookapi.com/pricing/
+- aid: sportsbook-api:sportsbook-api-betting-analysis-api
+  name: Sportsbook API Betting Analysis API
+  description: The Betting Analysis API from Sportsbook API — 3 operation(s) for betting analysis.
+  humanURL: https://sportsbookapi.com/
+  baseURL: https://api.sportsbookapi.com
+  tags:
+  - Betting Analysis
+  properties:
+  - type: OpenAPI
+    url: openapi/sportsbook-api-betting-analysis-api-openapi.yml
+  - type: Documentation
+    url: https://sportsbookapi.com/documentation/
+  - type: Pricing
+    url: https://sportsbookapi.com/pricing/
+- aid: sportsbook-api:sportsbook-api-odds-api
+  name: Sportsbook API Odds API
+  description: The Odds API from Sportsbook API — 2 operation(s) for odds.
+  humanURL: https://sportsbookapi.com/
+  baseURL: https://api.sportsbookapi.com
+  tags:
+  - Odds
+  properties:
+  - type: OpenAPI
+    url: openapi/sportsbook-api-odds-api-openapi.yml
+  - type: Documentation
+    url: https://sportsbookapi.com/documentation/
+  - type: Pricing
+    url: https://sportsbookapi.com/pricing/
+- aid: sportsbook-api:sportsbook-api-reference-api
+  name: Sportsbook API Reference API
+  description: The Reference API from Sportsbook API — 2 operation(s) for reference.
+  humanURL: https://sportsbookapi.com/
+  baseURL: https://api.sportsbookapi.com
+  tags:
+  - Reference
+  properties:
+  - type: OpenAPI
+    url: openapi/sportsbook-api-reference-api-openapi.yml
+  - type: Documentation
+    url: https://sportsbookapi.com/documentation/
+  - type: Pricing
+    url: https://sportsbookapi.com/pricing/
 common:
   - type: AgenticAccess
     url: agentic-access/sportsbook-api-agentic-access.yml
