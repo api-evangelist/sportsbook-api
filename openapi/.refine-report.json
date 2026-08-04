@@ -1,0 +1,18 @@
+{
+  "provider": "sportsbook-api",
+  "sources": [
+    "sportsbook-api-betting-analysis-api-openapi.yml",
+    "sportsbook-api-odds-api-openapi.yml",
+    "sportsbook-api-reference-api-openapi.yml"
+  ],
+  "outputs": [
+    "sportsbook-api-betting-analysis-api-openapi.yml",
+    "sportsbook-api-odds-api-openapi.yml",
+    "sportsbook-api-reference-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
