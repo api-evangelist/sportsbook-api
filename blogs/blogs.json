@@ -6,9 +6,10 @@
       "feed_url": "https://sportsbookapi.com/feed/",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "none",
+      "error": "parse_failed"
     }
   ],
-  "fetched": "2026-08-06T14:08:46Z",
+  "fetched": "2026-08-15T12:11:08Z",
   "post_count": 5
 }
