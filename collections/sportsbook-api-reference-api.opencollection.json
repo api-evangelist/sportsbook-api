@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Sportsbook Betting Analysis Reference API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-RapidAPI-Key",
+      "value": "{{X-RapidAPI-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reference",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Sports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsbookapi.com/v1/sports"
+          },
+          "docs": "Retrieve all supported sports and their available leagues."
+        },
+        {
+          "info": {
+            "name": "List Bookmakers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sportsbookapi.com/v1/bookmakers"
+          },
+          "docs": "Retrieve all supported sportsbooks that odds are aggregated from."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

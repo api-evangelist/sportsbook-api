@@ -1,0 +1,209 @@
+{
+  "item": [
+    {
+      "id": "c85d441f-97d5-4cda-b765-49ea738d9157",
+      "name": "Reference",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc1d8549-2583-43be-b834-41097124c598",
+          "name": "List Sports",
+          "request": {
+            "name": "List Sports",
+            "description": {
+              "content": "Retrieve all supported sports and their available leagues.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "sports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21297f90-7fad-4c03-b6ac-eae512ea3f97",
+              "name": "List of supported sports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "sports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sports\": [\n    {\n      \"name\": \"string\",\n      \"leagues\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"leagues\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86d34132-91ca-4ab5-ae66-a5a3c69fab03",
+          "name": "List Bookmakers",
+          "request": {
+            "name": "List Bookmakers",
+            "description": {
+              "content": "Retrieve all supported sportsbooks that odds are aggregated from.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "bookmakers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76c399c9-be4b-414e-8cfd-9bf82a650181",
+              "name": "List of supported sportsbooks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "bookmakers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-RapidAPI-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"bookmakers\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"states\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"states\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sportsbookapi.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-RapidAPI-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a702debb-22c1-4ac3-b35d-ffe7b470048e",
+    "name": "Sportsbook Betting Analysis Reference API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Sportsbook API provides real-time betting odds data from major US sportsbooks including FanDuel, DraftKings, BetMGM, Kalshi, theScore, Fanatics, BetRivers, Polymarket, Bovada, and BetOnline. The API covers NFL, NBA, MLB, NHL, NCAA football, NCAA basketball, soccer, and more with spreads, moneylines, totals, halves, quarters, props, and futures markets. Odds update once per minute with positive EV, arbitrage, and middle opportunity detection.",
+      "type": "text/plain"
+    }
+  }
+}
