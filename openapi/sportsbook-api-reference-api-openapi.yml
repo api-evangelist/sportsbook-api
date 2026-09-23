@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Sportsbook Betting Analysis Reference API
+  title: Sportsbook Reference API
   description: Sportsbook API provides real-time betting odds data from major US sportsbooks including FanDuel, DraftKings, BetMGM, Kalshi, theScore, Fanatics, BetRivers, Polymarket, Bovada, and BetOnline. The API covers NFL, NBA, MLB, NHL, NCAA football, NCAA basketball, soccer, and more with spreads, moneylines, totals, halves, quarters, props, and futures markets. Odds update once per minute with positive EV, arbitrage, and middle opportunity detection.
   version: '1.0'
   contact:

@@ -1,9 +1,7 @@
 {
   "provider": "sportsbook-api",
   "sources": [
-    "sportsbook-api-betting-analysis-api-openapi.yml",
-    "sportsbook-api-odds-api-openapi.yml",
-    "sportsbook-api-reference-api-openapi.yml"
+    "_original/sportsbook-api-openapi.yml"
   ],
   "outputs": [
     "sportsbook-api-betting-analysis-api-openapi.yml",
@@ -13,6 +11,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sportsbook-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sportsbook-api-openapi.yml: declared missing tag: Betting Analysis",
+    "sportsbook-api-openapi.yml: declared missing tag: Odds",
+    "sportsbook-api-openapi.yml: declared missing tag: Reference",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "sportsbook-api-betting-analysis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sportsbook-api-odds-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sportsbook-api-reference-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
