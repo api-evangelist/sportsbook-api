@@ -94,32 +94,6 @@ paths:
           description: Event not found
 components:
   schemas:
-    MarketOdds:
-      type: object
-      properties:
-        market:
-          type: string
-          description: Market type (spread, moneyline, total, prop)
-        period:
-          type: string
-          description: Game period (fullgame, firsthalf, firstquarter)
-        bookmakers:
-          type: array
-          items:
-            $ref: '#/components/schemas/BookmakerOdds'
-    OddsResponse:
-      type: object
-      properties:
-        sport:
-          type: string
-          description: Sport name
-        league:
-          type: string
-          description: League abbreviation
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventOdds'
     EventOdds:
       type: object
       properties:
@@ -142,6 +116,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MarketOdds'
+    MarketOdds:
+      type: object
+      properties:
+        market:
+          type: string
+          description: Market type (spread, moneyline, total, prop)
+        period:
+          type: string
+          description: Game period (fullgame, firsthalf, firstquarter)
+        bookmakers:
+          type: array
+          items:
+            $ref: '#/components/schemas/BookmakerOdds'
     BookmakerOdds:
       type: object
       properties:
@@ -163,6 +150,19 @@ components:
         lastUpdated:
           type: string
           format: date-time
+    OddsResponse:
+      type: object
+      properties:
+        sport:
+          type: string
+          description: Sport name
+        league:
+          type: string
+          description: League abbreviation
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventOdds'
   securitySchemes:
     rapidApiKey:
       type: apiKey
