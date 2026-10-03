@@ -133,27 +133,6 @@ paths:
                       $ref: '#/components/schemas/MiddleOpportunity'
 components:
   schemas:
-    MiddleOpportunity:
-      type: object
-      properties:
-        eventId:
-          type: string
-        market:
-          type: string
-        bookmaker1:
-          type: string
-        bookmaker2:
-          type: string
-        line1:
-          type: number
-          format: float
-        line2:
-          type: number
-          format: float
-        window:
-          type: number
-          format: float
-          description: Middle window in points
     PositiveEvBet:
       type: object
       properties:
@@ -175,6 +154,27 @@ components:
         fairOdds:
           type: number
           format: float
+    MiddleOpportunity:
+      type: object
+      properties:
+        eventId:
+          type: string
+        market:
+          type: string
+        bookmaker1:
+          type: string
+        bookmaker2:
+          type: string
+        line1:
+          type: number
+          format: float
+        line2:
+          type: number
+          format: float
+        window:
+          type: number
+          format: float
+          description: Middle window in points
     ArbitrageOpportunity:
       type: object
       properties:

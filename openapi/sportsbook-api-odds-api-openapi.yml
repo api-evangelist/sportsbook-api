@@ -129,6 +129,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BookmakerOdds'
+    OddsResponse:
+      type: object
+      properties:
+        sport:
+          type: string
+          description: Sport name
+        league:
+          type: string
+          description: League abbreviation
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/EventOdds'
     BookmakerOdds:
       type: object
       properties:
@@ -150,19 +163,6 @@ components:
         lastUpdated:
           type: string
           format: date-time
-    OddsResponse:
-      type: object
-      properties:
-        sport:
-          type: string
-          description: Sport name
-        league:
-          type: string
-          description: League abbreviation
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/EventOdds'
   securitySchemes:
     rapidApiKey:
       type: apiKey
