@@ -133,27 +133,6 @@ paths:
                       $ref: '#/components/schemas/MiddleOpportunity'
 components:
   schemas:
-    PositiveEvBet:
-      type: object
-      properties:
-        eventId:
-          type: string
-        team:
-          type: string
-        market:
-          type: string
-        bookmaker:
-          type: string
-        odds:
-          type: number
-          format: float
-        expectedValue:
-          type: number
-          format: float
-          description: Expected value percentage
-        fairOdds:
-          type: number
-          format: float
     MiddleOpportunity:
       type: object
       properties:
@@ -194,6 +173,27 @@ components:
           type: number
           format: float
         awayOdds:
+          type: number
+          format: float
+    PositiveEvBet:
+      type: object
+      properties:
+        eventId:
+          type: string
+        team:
+          type: string
+        market:
+          type: string
+        bookmaker:
+          type: string
+        odds:
+          type: number
+          format: float
+        expectedValue:
+          type: number
+          format: float
+          description: Expected value percentage
+        fairOdds:
           type: number
           format: float
   securitySchemes:

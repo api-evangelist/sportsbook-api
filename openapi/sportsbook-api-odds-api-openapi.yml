@@ -116,6 +116,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MarketOdds'
+    BookmakerOdds:
+      type: object
+      properties:
+        bookmaker:
+          type: string
+          description: Sportsbook name
+        homeOdds:
+          type: number
+          format: float
+          description: Home team or over odds in American format
+        awayOdds:
+          type: number
+          format: float
+          description: Away team or under odds in American format
+        line:
+          type: number
+          format: float
+          description: Point spread or total points line
+        lastUpdated:
+          type: string
+          format: date-time
     MarketOdds:
       type: object
       properties:
@@ -142,27 +163,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/EventOdds'
-    BookmakerOdds:
-      type: object
-      properties:
-        bookmaker:
-          type: string
-          description: Sportsbook name
-        homeOdds:
-          type: number
-          format: float
-          description: Home team or over odds in American format
-        awayOdds:
-          type: number
-          format: float
-          description: Away team or under odds in American format
-        line:
-          type: number
-          format: float
-          description: Point spread or total points line
-        lastUpdated:
-          type: string
-          format: date-time
   securitySchemes:
     rapidApiKey:
       type: apiKey
