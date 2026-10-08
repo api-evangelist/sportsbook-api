@@ -89,6 +89,12 @@ apis:
   - type: Pricing
     url: https://sportsbookapi.com/pricing/
 common:
+  - type: Plans
+    url: plans/sportsbook-api-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/sportsbook-api-rate-limits.yml
+  - type: FinOps
+    url: finops/sportsbook-api-finops.yml
   - type: AgenticAccess
     url: agentic-access/sportsbook-api-agentic-access.yml
   - type: DomainSecurity
