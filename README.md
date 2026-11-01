@@ -1,4 +1,4 @@
-# Sportsbook API (sportsbook-api)
+# Sportsbook API
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,62 +66,158 @@
 
 Sportsbook API provides real-time sports betting odds data from major US sportsbooks including FanDuel, DraftKings, BetMGM, Kalshi, theScore, Fanatics, BetRivers, Polymarket, Bovada, and BetOnline. The API aggregates spreads, moneylines, totals, halves, quarters, player props, and futures for NFL, NBA, MLB, NHL, NCAA football, NCAA basketball, and soccer leagues. Includes tools to identify positive expected value (+EV) bets, arbitrage opportunities, and middling situations. Odds update once per minute, with live odds available during games.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/sportsbook-api/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/sportsbook-api/refs/heads/main/apis.yml)
+**Areas:** Sports Betting · Odds · Sports Data · Gambling
 
-## Scope
+## Sportsbook API on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Sportsbook API is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/sportsbook-api/](https://apis.io/providers/sportsbook-api/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (3)
 
-- Sports Betting
-- Odds
-- Sports Data
-- Gambling
+- [Sportsbook API Betting Analysis API](https://apis.io/apis/sportsbook-api/sportsbook-api-betting-analysis-api/) — The Betting Analysis API from Sportsbook API — 3 operation(s) for betting analysis.
+- [Sportsbook API Odds API](https://apis.io/apis/sportsbook-api/sportsbook-api-odds-api/) — The Odds API from Sportsbook API — 2 operation(s) for odds.
+- [Sportsbook API Reference API](https://apis.io/apis/sportsbook-api/sportsbook-api-reference-api/) — The Reference API from Sportsbook API — 2 operation(s) for reference.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Sportsbook API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Real-time sports betting odds aggregator providing data from 10+ major US sportsbooks. Covers NFL, NBA, MLB, NHL, NCAA, and soccer with spread, moneyline, total, and prop markets. Features automated detection of arbitrage opportunities, positive EV bets, and middle opportunities. Hosted on RapidAPI with tiered pricing from free (50 req/day) to enterprise (50K req/day).
+- [Sportsbook Api Agentic Access](https://apis.io/agentic-access/sportsbook-api/sportsbook-api-agentic-access/)
 
-- **Human URL:** [https://sportsbookapi.com/](https://sportsbookapi.com/)
-- **Base URL:** `https://api.sportsbookapi.com`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- Sports Betting
-- Odds
-- NFL
-- NBA
-- MLB
-- NHL
-- Soccer
-- Arbitrage
-- Expected Value
+- [Sportsbook API Arbitrage Opportunity](https://apis.io/schemas/sportsbook-api/sportsbook-api-arbitrage/)
+- [Sportsbook API Odds Response](https://apis.io/schemas/sportsbook-api/sportsbook-api-odds/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://sportsbookapi.com/documentation/)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/sportsbook-api/refs/heads/main/openapi/sportsbook-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Pricing](https://sportsbookapi.com/pricing/)
-- [Postman Collection](collections/sportsbook-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/sportsbook-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-## Common Properties
+- [Sportsbook Api Odds Structure](https://apis.io/json-structure/sportsbook-api/sportsbook-api-odds-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Sportsbook Api Context](https://apis.io/jsonld/sportsbook-api/sportsbook-api-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Sportsbook API Vocabulary](https://apis.io/vocabularies/sportsbook-api/sportsbook-api-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Sportsbook Api Get Arbitrage Example](https://apis.io/examples/sportsbook-api/sportsbook-api-get-arbitrage-example/)
+- [Sportsbook Api Get Odds Example](https://apis.io/examples/sportsbook-api/sportsbook-api-get-odds-example/)
+
+#### Collections (4)
+
+Postman and Open Collection request collections.
+
+- [Sportsbook API](https://apis.io/collections/sportsbook-api/open-sportsbook-api/)
+- [Sportsbook Betting Analysis API](https://apis.io/collections/sportsbook-api/open-sportsbook-api-betting-analysis-api/)
+- [Sportsbook Betting Analysis Odds API](https://apis.io/collections/sportsbook-api/open-sportsbook-api-odds-api/)
+- [Sportsbook Betting Analysis Reference API](https://apis.io/collections/sportsbook-api/open-sportsbook-api-reference-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Sportsbook API — jsonschema rules](https://apis.io/rules/sportsbook-api/sportsbook-api-jsonschema-spectral-rules/)
+- [Sportsbook API API Rules](https://apis.io/rules/sportsbook-api/sportsbook-api-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Sportsbook Api Authentication](https://apis.io/security/sportsbook-api/sportsbook-api-authentication/)
+- [Sportsbook Api Domain Security](https://apis.io/security/sportsbook-api/sportsbook-api-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Sportsbook Api Plans Pricing](https://apis.io/plans/sportsbook-api/sportsbook-api-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Sportsbook Api Rate Limits](https://apis.io/rate-limits/sportsbook-api/sportsbook-api-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Sportsbook Api Finops](https://apis.io/finops/sportsbook-api/sportsbook-api-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://sportsbookapi.com/)
-- [Portal](https://sportsbookapi.com/documentation/)
 - [Pricing](https://sportsbookapi.com/pricing/)
+- [Blog](https://sportsbookapi.com/feed/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 28.7** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 55.2 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 7.9 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/sportsbook-api/](https://apis.io/providers/sportsbook-api/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Sportsbook API: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/sportsbook-api/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
